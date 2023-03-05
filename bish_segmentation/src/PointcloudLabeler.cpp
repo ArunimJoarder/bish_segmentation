@@ -374,9 +374,9 @@ bool PointcloudLabeler::run(std::string results_path, std::string tppath, std::s
 		new_label_filename.append(testpath);
 		
 		//load test image and labeled image
-		cv::Mat test_image = cv::imread(test_filename.c_str(), CV_LOAD_IMAGE_COLOR);
+		cv::Mat test_image = cv::imread(test_filename.c_str(), cv::IMREAD_COLOR);
 		cv::cvtColor(test_image, test_image, cv::COLOR_BGR2RGB);
-		cv::Mat labeled_image = cv::imread(new_label_filename.c_str(), CV_LOAD_IMAGE_COLOR);
+		cv::Mat labeled_image = cv::imread(new_label_filename.c_str(), cv::IMREAD_COLOR);
 		cv::cvtColor(labeled_image, labeled_image, cv::COLOR_BGR2RGB);
 		
 		//TODO TODO

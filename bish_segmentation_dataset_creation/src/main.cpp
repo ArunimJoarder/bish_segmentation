@@ -75,10 +75,7 @@ std::vector<std::string> prototyping(std::string path, batchProcessor* processor
 	
 	HausdorffImageMatch *matcher = new HausdorffImageMatch;
 	
-	float dist_matrix[dirs.size()][dirs.size()];
-	for(unsigned int d1=0; d1<dirs.size(); d1++)
-		for(unsigned int d2=0; d2<dirs.size(); d2++)
-			dist_matrix[d1][d2] = NAN;
+	std::vector<std::vector<float> > dist_matrix(dirs.size(), std::vector<float>(dirs.size(), NAN));
 	
 	for(unsigned int d1=0; d1<dirs.size(); d1++)
 	{

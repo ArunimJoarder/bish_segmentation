@@ -5,7 +5,7 @@
 bool HausdorffImageProcessor::loadImage(std::string filename)
 {
 	m_filename = filename;
-	m_originalImage = cv::imread(filename.c_str(), CV_LOAD_IMAGE_COLOR);
+	m_originalImage = cv::imread(filename.c_str(), cv::IMREAD_COLOR);
 	if(m_originalImage.data == NULL)
 		return false;
 
