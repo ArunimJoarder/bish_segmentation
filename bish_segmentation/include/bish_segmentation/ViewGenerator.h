@@ -57,7 +57,7 @@ public:
 private:	
 	//------------------------- variables
 	ros::NodeHandle & m_nh;
-  static bool m_opengl_context_initialized;
+  	static bool m_opengl_context_initialized;
 	std::string m_opengl_context_screen;
 
 	SurfelRenderer::Ptr m_renderer;
@@ -77,9 +77,9 @@ private:
 	const sensor_msgs::JointState *const joint_state = NULL;
 	
 public:
-  typedef std::vector<Eigen::Affine3d, Eigen::aligned_allocator<Eigen::Affine3d> > Affine3dVector;
-  typedef std::vector<SurfelRenderer::GLUintVector> GLUintVectorVector;
-  typedef std::vector<SurfelRenderer::GLFloatVector> GLFloatVectorVector;
+	typedef std::vector<Eigen::Affine3d, Eigen::aligned_allocator<Eigen::Affine3d> > Affine3dVector;
+	typedef std::vector<SurfelRenderer::GLUintVector> GLUintVectorVector;
+	typedef std::vector<SurfelRenderer::GLFloatVector> GLFloatVectorVector;
 
 	ViewGenerator(ros::NodeHandle & nh): m_nh(nh)
 	{
@@ -96,7 +96,7 @@ public:
 		nh.param<double>("theta_z", thetaZ, 0);
 		
 		size = Eigen::Vector2i(image_width, image_height);
-    center = Eigen::Vector2f(double(image_width/2), double(image_height/2));
+    	center = Eigen::Vector2f(double(image_width/2), double(image_height/2));
 		focal = Eigen::Vector2f(focal_x, focal_y);
 		range = Eigen::Vector2f(range_min, range_max);
 		angle_step = Eigen::Vector3d(thetaX, thetaY, thetaZ);
@@ -104,8 +104,8 @@ public:
 
 	~ViewGenerator() { /*do nothing*/ }
 
-  int Height() const {return image_height; }
-  int Width() const {return image_width; }
+	int Height() const {return image_height; }
+	int Width() const {return image_width; }
 	
 	/****************************************************************************************************/
 
@@ -113,7 +113,7 @@ public:
 	{
 		if (!m_opengl_context_initialized)
 		{
-      ROS_INFO("bish_segmentation: ViewGenerator: initializing fake opengl context (Screen: \"%s\").",
+      		ROS_INFO("bish_segmentation: ViewGenerator: initializing fake opengl context (Screen: \"%s\").",
 			m_opengl_context_screen.c_str());
 			InitFakeOpenGLContext(m_opengl_context_screen);
 			m_opengl_context_initialized = true;
@@ -122,17 +122,17 @@ public:
 	
 	/****************************************************************************************************/
 
-  void run(std::string ppath, std::string saving_path, const uint64 k_search_count,
-           const float point_radius, bool with_color, bool with_depth = true, bool enable_lighting = false,
-           const bool back_face_culling = false);
+  	void run(std::string ppath, std::string saving_path, const uint64 k_search_count,
+           	 const float point_radius, bool with_color, bool with_depth = true, bool enable_lighting = false,
+           	 const bool back_face_culling = false);
 
   /****************************************************************************************************/
 
-  void runMem(const PointSurfelCloud & cloud,
-              const Affine3dVector & view_poses,
-              const bool with_color, const bool with_depth, const bool enable_lighting,
-              const bool back_face_culling,
-              const std::string saving_path, const std::string saving_source_name);
+  	void runMem(const PointSurfelCloud & cloud,
+              	const Affine3dVector & view_poses,
+              	const bool with_color, const bool with_depth, const bool enable_lighting,
+              	const bool back_face_culling,
+              	const std::string saving_path, const std::string saving_source_name);
 	
 	/****************************************************************************************************/
 
@@ -141,16 +141,16 @@ public:
 private:
 	boundingBox computeDists(PointSurfelCloud cloud);
 	
-  PointSurfelCloud extractPointsSurfel(std::string path, std::string filename,
-                                       const uint64 k_search_count, const float point_radius);
-	
-  void saveImage(SurfelRenderer::GLFloatVector imgvector, SurfelRenderer::GLUintVector indexvector,
-                 std::string saving_path, std::string filename,
-                 double thetaX, double thetaY, double thetaZ, bool with_color);
+	PointSurfelCloud extractPointsSurfel(std::string path, std::string filename,
+										 const uint64 k_search_count, const float point_radius);
+		
+	void saveImage(SurfelRenderer::GLFloatVector imgvector, SurfelRenderer::GLUintVector indexvector,
+				   std::string saving_path, std::string filename,
+				   double thetaX, double thetaY, double thetaZ, bool with_color);
 
-  void saveImageCustomString(SurfelRenderer::GLFloatVector imgvector, SurfelRenderer::GLUintVector indexvector,
-                             std::string saving_path, std::string filename,
-                             std::string custom_string, bool with_color);
+	void saveImageCustomString(SurfelRenderer::GLFloatVector imgvector, SurfelRenderer::GLUintVector indexvector,
+                               std::string saving_path, std::string filename,
+                               std::string custom_string, bool with_color);
 };
 
 /****************************************************************************************************/

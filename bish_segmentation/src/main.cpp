@@ -28,7 +28,7 @@ killall rosmaster\
 
 int main(int argc, char *argv[])
 {
-  ros::init(argc, argv, "bish_segmentation");
+  	ros::init(argc, argv, "bish_segmentation");
 	ros::NodeHandle nh("~");
 	
 	std::string lpath;	//labeled images
@@ -50,14 +50,14 @@ int main(int argc, char *argv[])
 	bool generate_test_flag;
 	nh.param<bool>("generate_test_flag", generate_test_flag, true);
 	
-  bool skip_segmentation;		//Used only for testing
-  nh.param<bool>("skip_segmentation", skip_segmentation, false);
+	bool skip_segmentation;		//Used only for testing
+	nh.param<bool>("skip_segmentation", skip_segmentation, false);
 
-  double point_radius;
-  nh.param<double>("point_radius", point_radius, 0.005);
+	double point_radius;
+	nh.param<double>("point_radius", point_radius, 0.005);
 
-  int k_search_count;
-  nh.param<int>("normal_k_search_count", k_search_count, 10);
+	int k_search_count;
+	nh.param<int>("normal_k_search_count", k_search_count, 10);
 	
 	//Check comparison dataset dir
 	std::vector<std::string> classdirs = getDirectoryNames(lpath.c_str());
@@ -71,7 +71,7 @@ int main(int argc, char *argv[])
 	if(fileExists(results_path))
 		recursiveDelete(results_path);
 	mkdir(results_path.c_str(), S_IRUSR | S_IWUSR | S_IXUSR);
-  recursiveDelete(tpath);
+  	recursiveDelete(tpath);
 	
 	time_t start, end;
 	
@@ -95,7 +95,7 @@ int main(int argc, char *argv[])
 		}
 		ViewGenerator* vg = new ViewGenerator(nh);
 		
-    vg->run(tppath, tpath, k_search_count, point_radius, false);
+    	vg->run(tppath, tpath, k_search_count, point_radius, false);
 		
 		delete vg;
 		
